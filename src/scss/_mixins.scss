@@ -1,0 +1,7 @@
+$bp-1: 580px;
+
+@mixin bigger-screen {
+  @media (min-width: $bp-1) {
+    @content;
+  }
+}
