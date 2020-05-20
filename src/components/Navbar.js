@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`container navbar element-bg--${
+      className={`container navbar space-between element-bg--${
         theme.isDark ? "dark" : "light"
       }`}
     >
