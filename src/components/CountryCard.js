@@ -3,7 +3,6 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const CountryCard = ({ country }) => {
   const { state: theme } = useContext(ThemeContext);
-
   return (
     <a
       href="#!"
@@ -21,7 +20,7 @@ const CountryCard = ({ country }) => {
         <ul>
           <li>
             <span className="bold">Population: </span>
-            {country.population}
+            {country.population.toLocaleString("en-IN")}
           </li>
           <li>
             <span className="bold">Region: </span>
