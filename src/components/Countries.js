@@ -1,25 +1,21 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
+import { CountriesContext } from "../context/CountriesContext";
 import CountryCard from "./CountryCard";
-import axios from "axios";
-import _ from "lodash";
 
 const Countries = () => {
-  const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    async function getCountries() {
-      const { data } = await axios.get("https://restcountries.eu/rest/v2/all");
-      setCountries(data);
-    }
-    getCountries();
-  }, []);
+  const { state } = useContext(CountriesContext);
+  const { data, loading, error } = state;
 
   return (
     <main className="container countries">
-      {countries.map((country) => (
-        <CountryCard key={country.name} country={country} />
-      ))}
+      {loading && !data ? (
+        <span>loading ...</span>
+      ) : (
+        data.map((country) => (
+          <CountryCard key={country.alpha3Code} country={country} />
+        ))
+      )}
+      {error && <p>{error.message}</p>}
     </main>
   );
 };
