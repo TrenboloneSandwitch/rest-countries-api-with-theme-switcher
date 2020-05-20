@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Countries from "./components/Countries";
+import Controls from "./components/Controls";
 import "./App.scss";
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
       }
     >
       <Navbar />
+      <Controls />
+
       <Countries />
     </div>
   );
