@@ -1,27 +1,13 @@
 import React, { useReducer } from "react";
+import { initialTheme, reducerVars } from "../config";
+import { themeReducer } from "./reducers/themeReducers";
 
 export const ThemeContext = React.createContext();
 ThemeContext.displayName = "ThemeContext";
-
-const TOGGLE_DARK = "TOGGLE_DARK";
-const GET_THEME = "GET_THEME";
-const initialTheme = {
-  isDark: false,
-};
-
-const reducer = (state = initialTheme, action) => {
-  if ((action.type = TOGGLE_DARK)) {
-    console.log(state);
-    const isDark = state.isDark;
-
-    return { ...state, isDark: !isDark };
-  }
-
-  return state;
-};
+const { TOGGLE_DARK } = reducerVars;
 
 export const ThemeProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialTheme);
+  const [state, dispatch] = useReducer(themeReducer, initialTheme);
 
   const toggleTheme = () => {
     dispatch({
