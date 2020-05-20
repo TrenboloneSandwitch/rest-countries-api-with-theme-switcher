@@ -20,7 +20,7 @@ const CountryCard = ({ country }) => {
         <ul>
           <li>
             <span className="bold">Population: </span>
-            {country.population.toLocaleString("en-IN")}
+            {country.population.toLocaleString("en")}
           </li>
           <li>
             <span className="bold">Region: </span>
