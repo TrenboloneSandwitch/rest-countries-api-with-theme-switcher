@@ -4,14 +4,21 @@ import CountryCard from "./CountryCard";
 
 const Countries = () => {
   const { state } = useContext(CountriesContext);
-  const { data, loading, error } = state;
+  const { data: allCountries, loading, error, currentRegion } = state;
+
+  let filtredCountries = allCountries;
+  if (currentRegion !== "") {
+    filtredCountries = allCountries.filter(
+      (country) => country.region === currentRegion
+    );
+  }
 
   return (
     <main className="container countries">
-      {loading && !data ? (
+      {loading && !filtredCountries ? (
         <span>loading ...</span>
       ) : (
-        data.map((country) => (
+        filtredCountries.map((country) => (
           <CountryCard key={country.alpha3Code} country={country} />
         ))
       )}

@@ -7,7 +7,7 @@ import { endpoint, initialState, reducerVars } from "../config";
 export const CountriesContext = React.createContext();
 CountriesContext.displayName = "CountriesContext";
 
-const { LOADING, RESPONSE_COMPLETE, ERROR } = reducerVars;
+const { LOADING, RESPONSE_COMPLETE, ERROR, FILTER_DATA } = reducerVars;
 
 const fetchCountries = (dispatch) => {
   dispatch({ type: LOADING });
@@ -29,7 +29,11 @@ export const CountriesProvider = ({ children }) => {
     dispatch(fetchCountries);
   }, [dispatch]);
 
-  const value = { state };
+  const changeRegion = (selected) => {
+    dispatch({ type: FILTER_DATA, payload: { currentRegion: selected } });
+  };
+
+  const value = { state, changeRegion };
 
   return (
     <CountriesContext.Provider value={value}>
