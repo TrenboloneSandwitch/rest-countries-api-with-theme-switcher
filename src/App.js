@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
+import { Router } from "@reach/router";
 import { ThemeContext } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Countries from "./components/Countries";
-import Controls from "./components/Controls";
+import Detail from "./components/Detail";
 import "./App.scss";
 
 function App() {
@@ -18,9 +19,14 @@ function App() {
       }
     >
       <Navbar />
-      <Controls />
 
-      <Countries />
+      <Router>
+        <Countries path="/" />
+        <Detail path="/detail/:alpha3Code" />
+        {/* <CreateTournament path="/CreateTournament" />
+        <NewGroup path="/NewGroup" />
+        <Group path="/Group/:groupId" /> */}
+      </Router>
     </div>
   );
 }

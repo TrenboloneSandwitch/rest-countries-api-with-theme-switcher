@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { Link } from "@reach/router";
 import { ThemeContext } from "../context/ThemeContext";
 
 const CountryCard = ({ country }) => {
   const { state: theme } = useContext(ThemeContext);
   return (
-    <a
+    <Link
+      to={`/detail/${country.alpha3Code}`}
       href="#!"
       className={`country-card element-bg--${theme.isDark ? "dark" : "light"}`}
     >
@@ -32,7 +34,7 @@ const CountryCard = ({ country }) => {
           </li>
         </ul>
       </div>
-    </a>
+    </Link>
   );
 };
 
