@@ -7,7 +7,13 @@ import { endpoint, initialState, reducerVars } from "../config";
 export const CountriesContext = React.createContext();
 CountriesContext.displayName = "CountriesContext";
 
-const { LOADING, RESPONSE_COMPLETE, ERROR, FILTER_DATA } = reducerVars;
+const {
+  LOADING,
+  RESPONSE_COMPLETE,
+  ERROR,
+  FILTER_DATA,
+  SEARCH_STATE,
+} = reducerVars;
 
 const fetchCountries = (dispatch) => {
   dispatch({ type: LOADING });
@@ -24,16 +30,21 @@ const fetchCountries = (dispatch) => {
 
 export const CountriesProvider = ({ children }) => {
   const [state, dispatch] = useThunkReducer(fetchReducer, initialState);
+  const { data: allCountries, currentRegion, searchQuery } = state;
 
   useEffect(() => {
     dispatch(fetchCountries);
   }, [dispatch]);
 
   const changeRegion = (selected) => {
-    dispatch({ type: FILTER_DATA, payload: { currentRegion: selected } });
+    const currentRegion = selected.value === "" ? null : selected;
+    dispatch({ type: FILTER_DATA, payload: { currentRegion } });
+  };
+  const searchState = (query) => {
+    dispatch({ type: SEARCH_STATE, payload: { query: query } });
   };
 
-  const value = { state, changeRegion };
+  const value = { state, changeRegion, searchState };
 
   return (
     <CountriesContext.Provider value={value}>

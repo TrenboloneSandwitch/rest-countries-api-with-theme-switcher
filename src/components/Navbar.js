@@ -11,7 +11,7 @@ const Navbar = () => {
         theme.isDark ? "dark" : "light"
       }`}
     >
-      <h2>Navbar</h2>
+      <h2>Where in the world?</h2>
       <Toggler />
     </nav>
   );

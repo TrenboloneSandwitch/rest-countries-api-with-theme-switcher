@@ -6,13 +6,11 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { CountriesProvider } from "./context/CountriesContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <CountriesProvider>
-        <App />
-      </CountriesProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider>
+    <CountriesProvider>
+      <App />
+    </CountriesProvider>
+  </ThemeProvider>,
   document.getElementById("root")
 );
 

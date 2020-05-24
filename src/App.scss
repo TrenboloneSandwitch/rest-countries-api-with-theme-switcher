@@ -39,6 +39,23 @@ li {
 .space-between {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+
+  margin-bottom: 25px;
+
+  @include bigger-screen {
+    margin-bottom: unset;
+  }
+
+  @include bigger-screen {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.align-center {
+  align-items: flex-start;
 }
 
 .navbar {
@@ -51,9 +68,37 @@ li {
   margin-top: 1em;
 }
 
+.searchBox {
+  border-radius: 10px;
+  height: 57px;
+  width: 100%;
+  max-width: 550px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: $shadow;
+  margin-bottom: 35px;
+  @include bigger-screen {
+    margin-bottom: 0px;
+  }
+  .fa-search {
+    padding: 0 20px;
+  }
+
+  .searchInput {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    font-size: 15px;
+  }
+}
+
 .countries {
   margin-top: 1em;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-gap: 20px;
 }
@@ -68,6 +113,10 @@ li {
   overflow: hidden;
   border-radius: 4%;
   box-shadow: $shadow;
+
+  @include bigger-screen {
+    max-width: 400px;
+  }
 
   &__flag {
     &-container {
