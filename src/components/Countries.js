@@ -36,12 +36,13 @@ const Countries = () => {
       <main className="container countries">
         {loading && !filtredCountries ? (
           <span>loading ...</span>
+        ) : error ? (
+          <p>{error.message}</p>
         ) : (
           filtredCountries.map((country) => (
             <CountryCard key={country.alpha3Code} country={country} />
           ))
         )}
-        {error && <p>{error.message}</p>}
       </main>
     </React.Fragment>
   );

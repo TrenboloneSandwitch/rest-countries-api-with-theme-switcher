@@ -36,6 +36,27 @@ li {
   list-style-type: none;
 }
 
+.detail-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 40% !important;
+  }
+
+  .information {
+    padding: 50px;
+    width: 60% !important;
+  }
+}
+
+.col {
+  width: 50% !important;
+}
+
 .space-between {
   display: flex;
   justify-content: space-between;
