@@ -1,4 +1,4 @@
-export const endpoint = "https://restcountries.eu/rest/v2/all";
+export const endpoint = "https://restcountries.eu/rest/v2";
 
 export const initialState = {
   result: null,
@@ -6,6 +6,7 @@ export const initialState = {
   error: null,
   currentRegion: null,
   searchQuery: "",
+  selectedCountry: null,
 };
 export const initialTheme = { isDark: true };
 
