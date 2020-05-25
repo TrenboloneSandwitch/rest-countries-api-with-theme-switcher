@@ -18,7 +18,7 @@ const {
 const fetchCountries = (dispatch) => {
   dispatch({ type: LOADING });
   axios
-    .get(endpoint)
+    .get(`${endpoint}/all`)
     .then(({ data }) =>
       dispatch({
         type: RESPONSE_COMPLETE,
