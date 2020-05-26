@@ -30,7 +30,6 @@ const fetchCountries = (dispatch) => {
 
 export const CountriesProvider = ({ children }) => {
   const [state, dispatch] = useThunkReducer(fetchReducer, initialState);
-  const { data: allCountries, currentRegion, searchQuery } = state;
 
   useEffect(() => {
     dispatch(fetchCountries);
