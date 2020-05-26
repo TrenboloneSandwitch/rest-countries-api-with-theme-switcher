@@ -5,7 +5,7 @@ const Toggler = () => {
   const { state: theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div className="toggler">
-      Toggle {theme.isDark ? "light" : "dark"} side&nbsp;
+      {theme.isDark ? "light" : "dark"} mode&nbsp;
       <input
         type="checkbox"
         id="switch"
@@ -13,7 +13,7 @@ const Toggler = () => {
         onChange={(e) => {
           toggleTheme();
         }}
-      />
+      />{" "}
       <label htmlFor="switch">Toggle</label>
     </div>
   );
