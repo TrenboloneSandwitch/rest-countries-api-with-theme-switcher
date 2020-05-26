@@ -41,12 +41,6 @@ a {
   }
 }
 
-.badge {
-  padding: 10px;
-  width: max-content;
-  box-shadow: $shadow;
-}
-
 .row {
   flex-direction: column;
 }
@@ -112,7 +106,7 @@ li {
   }
 
   .bold {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     width: 270px;
 
     @include bigger-screen {
@@ -122,11 +116,22 @@ li {
 
   &__list {
     width: 100%;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-    grid-gap: 20px;
+    display: flex;
+    justify-content: baseline;
+    flex-wrap: wrap;
+
+    @include bigger-screen {
+      margin-left: 20px;
+    }
   }
+}
+
+.badge {
+  padding: 5px;
+  margin: 10px 10px 0 0;
+  box-shadow: $shadow;
+
+  width: max-content;
 }
 
 .full {

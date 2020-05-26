@@ -7,16 +7,31 @@ import { ThemeContext } from "../context/ThemeContext";
 const Detail = () => {
   const { alpha3Code } = useParams();
   const [country, setCountry] = useState(null);
+  const [neighbours, setNeighbours] = useState(null);
   const { state: theme } = useContext(ThemeContext);
 
   useEffect(() => {
+    getCountry();
+
     async function getCountry() {
       const { data } = await axios.get(`${endpoint}/alpha/${alpha3Code}`);
       setCountry(data);
     }
+  }, [alpha3Code]);
 
-    getCountry();
-  }, []);
+  useEffect(() => {
+    if (!country || !country.borders.length) return;
+    getNeighbours();
+
+    async function getNeighbours() {
+      const codes = country.borders.join().replace(/,/g, ";");
+      const { data } = await axios.get(`${endpoint}/alpha?codes=${codes}`);
+      const neighboursName = data.map((n) => {
+        return { code: n.alpha3Code, name: n.name };
+      });
+      setNeighbours(neighboursName);
+    }
+  }, [country]);
 
   return (
     <div className="container">
@@ -62,32 +77,47 @@ const Detail = () => {
                 <ul className="col information__list">
                   <li>
                     <span className="bold">Top Level Domain: </span>
-                    {country.topLevelDomain.map((domain) => domain)}
+                    {country.topLevelDomain.join().replace(/,/g, ", ")}
                   </li>
                   <li>
                     <span className="bold">Currencies: </span>
-                    {country.currencies.map((currency) => currency.name + ", ")}
+                    {country.currencies.map((currency) => currency.name).join()}
                   </li>
                   <li>
                     <span className="bold">Languages: </span>
-                    {country.languages.map((language) => language.name + ", ")}
+                    {country.languages
+                      .map((language) => language.name)
+                      .join()
+                      .replace(/,/g, ", ")}
                   </li>
                 </ul>
               </div>
               <div className="borders mt-4">
                 <span className="bold">Border Countries: </span>
-                <div className="borders__list">
-                  {country.borders.map((border) => (
-                    <span
-                      key={border}
-                      className={`badge element-bg--${
-                        theme.isDark ? "dark" : "light"
-                      }`}
-                    >
-                      {border}
-                    </span>
-                  ))}
-                </div>
+
+                {!neighbours ? (
+                  <span
+                    className={`badge element-bg--${
+                      theme.isDark ? "dark" : "light"
+                    }`}
+                  >
+                    I have no friends :-(
+                  </span>
+                ) : (
+                  <div className="borders__list">
+                    {neighbours.map(({ code, name }) => (
+                      <Link
+                        to={`${`/detail/${code}`}`}
+                        key={name}
+                        className={`badge element-bg--${
+                          theme.isDark ? "dark" : "light"
+                        }`}
+                      >
+                        {name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
