@@ -170,12 +170,12 @@ li {
 
 .navbar {
   box-shadow: $shadow;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
 }
 
 .controls {
-  margin-top: 1em;
+  margin-top: 4em;
 }
 
 .searchBox {
@@ -206,7 +206,7 @@ li {
 }
 
 .countries {
-  margin-top: 1em;
+  margin-top: 4em;
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
